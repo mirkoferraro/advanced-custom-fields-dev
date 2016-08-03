@@ -32,6 +32,7 @@ class ACFED {
 		include( 'class/custom_field.php' );
 		include( 'class/custom_field_container.php' );
 		include( 'class/custom_group.php' );
+		include( 'class/widget.php' );
 
 		add_action('acf/init', array( get_called_class(), 'registerGroups' ) );
 	}
