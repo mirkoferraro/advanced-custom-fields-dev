@@ -24,10 +24,6 @@ class CustomFieldContainer extends CustomField {
 		return $data;
 	}
 
-	function is_valid() {
-		return !! count( $this->fields );
-	}
-
 	function getFields() {
 		return $this->fields;
 	}
@@ -36,7 +32,7 @@ class CustomFieldContainer extends CustomField {
 		$fields_data = array();
 
 		foreach ( $this->fields as $field ) {
-			if ( $field->is_valid() ) {
+			if ( count( $field->fields ) ) {
 				$fields_data[] = $field->get();
 			}
 		}
@@ -44,9 +40,19 @@ class CustomFieldContainer extends CustomField {
 		return $fields_data;
 	}
 
-	function addField( $name, $label, $type ) {
-		$field = new CustomField( $name, $label, $type );
-		$this->fields[] = $field;
+	function addField( $name, $label = null, $type = null ) {
+		$field = null;
+
+		if ( is_object( $name ) && get_class( $name ) == 'CustomField' ) {
+			$field = $name;
+		} elseif ( $label != null && $type != null ) {
+			$field = new CustomField( $name, $label, $type );
+		}
+
+		if ( $field != null ) {
+			$this->fields[] = $field;
+		}
+
 		return $field;
 	}
 

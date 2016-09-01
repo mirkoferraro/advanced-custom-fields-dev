@@ -10,10 +10,10 @@ class CustomField {
 			$this->set( $key, $value );
 		}
 		
-		$this->set( 'key', $type . '_' . sha1($name) );
-		$this->set( 'name', $name );
-		$this->set( 'label', $label );
-		$this->set( 'type', $type );
+		$this->set( 'key', $type . '_' . sha1($name) )
+			->set( 'name', $name )
+			->set( 'label', $label )
+			->set( 'type', $type );
 	}
 
 	function set( $key, $value ) {
@@ -28,10 +28,5 @@ class CustomField {
 
 		return $this->data;
 	}
-
-	function is_valid() {
-		return true;
-	}
-	
 }
 

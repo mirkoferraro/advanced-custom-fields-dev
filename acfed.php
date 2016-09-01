@@ -3,7 +3,7 @@
 Plugin Name: Advanced Custom Fields Easy Development
 Plugin URI: http://www.mirkoferraro.it
 Description: Makes the ACF registration via PHP easier
-Version: 1.0.0
+Version: 1.0.2
 Author: Mirko Ferraro
 Author URI: http://www.mirkoferraro.it
 Copyright: Mirko Ferraro
@@ -14,7 +14,7 @@ if( ! defined( 'ABSPATH' ) ) {
 }
 
 class ACFED {
-
+	
 	static private $menu_order = 1;
 	static private $defaults = array();
 	static private $groups = array();
@@ -76,7 +76,7 @@ class ACFED {
 
 		foreach ( self::$groups as $group ) {
 
-			if ( ! $group->is_valid() ) {
+			if ( ! count( $group->fields() ) ) {
 				continue;
 			}
 			
