@@ -3,13 +3,14 @@
 class CustomGroup extends CustomFieldContainer {
 
 	function __construct( $name, $location = 'options_page == acf-options' ) {
+		parent::__construct( $name, null, null, 'fields' );
 		$this->set( 'key', 'group_' . sha1($name) );
 		$this->set( 'title', $name );
 		$this->setLocation( $location );
 
-		ACFED::addGroup( $this );
+		ACFD::addGroup( $this );
 	}
-	
+
 	function setLocation( $location ) {
 		if ( ! is_array( $location ) ) {
 			$location = self::parseLocationString( $location );

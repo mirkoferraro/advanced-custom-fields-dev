@@ -5,12 +5,12 @@ class CustomField {
 	private $data = array();
 
 	function __construct( $name, $label, $type ) {
-		$defaults = ACFED::getDefaults( $type );
+		$defaults = ACFD::getDefaults( $type );
 		foreach ( $defaults as $key => $value ) {
 			$this->set( $key, $value );
 		}
 		
-		$this->set( 'key', $type . '_' . sha1($name) )
+		$this->set( 'key', $type . '_' . sha1( $name . $label ) )
 			->set( 'name', $name )
 			->set( 'label', $label )
 			->set( 'type', $type );
@@ -27,6 +27,50 @@ class CustomField {
 		}
 
 		return $this->data;
+	}
+
+	function clone( $name, $label = null ) {
+		if ( $label == null ) {
+			$label = $this->get( 'label' );
+		}
+
+		$clone = new CustomField( $name, $label, $this->get( 'type' ) );
+		
+		foreach ( $this->data as $key => $value ) {
+			$clone->set( $key, $value );
+		}
+
+		return $clone;
+	}
+
+	function setInstructions( $value ) {
+		return $this->set( 'instructions', $value );
+	}
+
+	function setRequired( $value ) {
+		return $this->set( 'required', $value );
+	}
+
+	function setConditionalLogic( $value ) {
+		return $this->set( 'conditional_logic', $value );
+	}
+
+	function setWrapperWidth( $value ) {
+		$wrapper = isset( $this->data['wrapper'] ) ? $this->data['wrapper'] : array();
+		$wrapper['width'] = $value;
+		return $this->set( 'wrapper', $wrapper );
+	}
+
+	function setWrapperClass( $value ) {
+		$wrapper = isset( $this->data['wrapper'] ) ? $this->data['wrapper'] : array();
+		$wrapper['class'] = $value;
+		return $this->set( 'wrapper', $wrapper );
+	}
+
+	function setWrapperId( $value ) {
+		$wrapper = isset( $this->data['wrapper'] ) ? $this->data['wrapper'] : array();
+		$wrapper['id'] = $value;
+		return $this->set( 'wrapper', $wrapper );
 	}
 }
 
