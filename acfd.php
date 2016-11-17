@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class ACFD {
-	
+
 	static private $menu_order = 1;
 	static private $defaults   = array();
 	static private $groups     = array();
@@ -35,7 +35,7 @@ class ACFD {
 		include( 'class/custom_group.php' );
 		include( 'class/custom_module.php' );
 		include( 'class/widget.php' );
-		
+
 		include( 'includes/hide_on_screen_fix.php' );
 
 		add_action('acf/init', array( get_called_class(), 'registerGroups' ) );
@@ -118,10 +118,11 @@ class ACFD {
 
 		foreach ( self::$groups as $group ) {
 
+
 			if ( ! count( $group->getFields() ) ) {
 				continue;
 			}
-			
+
 			$group_data = $group->get();
 
 			if ( ! isset( $group_data['menu_order'] ) ) {
@@ -140,10 +141,10 @@ class ACFD {
 					if ( $rule['param'] == 'options_page' && $rule['operator'] == '==' ) {
 						if ( strpos( $rule['value'], 'acf-options-' ) === 0 ) {
 							acf_add_options_sub_page( substr( $rule['value'], 12 ) );
-							$file_code .= ' acf_add_options_sub_page("' . substr( $rule['value'], 12 ) . '");';
+							$fields_code .= ' acf_add_options_sub_page("' . substr( $rule['value'], 12 ) . '");';
 						} else {
 							acf_add_options_page();
-							$file_code .= ' acf_add_options_page();';
+							$fields_code .= ' acf_add_options_page();';
 						}
 					}
 				}
