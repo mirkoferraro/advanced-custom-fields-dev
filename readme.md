@@ -14,7 +14,7 @@ You can add ACFD code in yout theme's function.php
 
 First of all you must check if ACFD is active
 ```php
-if ( class_exists( 'ACFD' ) && ACFD::is_active() ) {
+if ( class_exists( 'ACFD' ) && ACFD::isActive() ) {
 	...
 }
 ```
