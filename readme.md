@@ -290,7 +290,7 @@ Flexible-content container
 ```php
 $group->addContainer( 'flexible_content', 'Flexible Content', 'flexible_content', 'layouts' )
 	->set( 'button_label', 'Add content' )
-	->addContainer( 'block_name', 'Block Label', '' )
+	->addContainer( 'block_name', 'Block Label', '', 'sub_fields' )
 		->addField( ... );
 ```
 
