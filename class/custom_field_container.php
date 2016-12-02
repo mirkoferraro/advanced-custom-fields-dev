@@ -74,7 +74,7 @@ class CustomFieldContainer extends CustomField {
 		}
 		
 		foreach ( $module->fields as $field ) {
-			$this->addField( $field->clone( $prefix . $field->get( 'name' ) ) );
+			$this->addField( $field->copy( $prefix . $field->get( 'name' ) ) );
 		}
 
 		return $this;

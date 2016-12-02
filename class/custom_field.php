@@ -29,18 +29,18 @@ class CustomField {
 		return $this->data;
 	}
 
-	function clone( $name, $label = null ) {
+	function copy( $name, $label = null ) {
 		if ( $label == null ) {
 			$label = $this->get( 'label' );
 		}
 
-		$clone = new CustomField( $name, $label, $this->get( 'type' ) );
+		$copy = new CustomField( $name, $label, $this->get( 'type' ) );
 		
 		foreach ( $this->data as $key => $value ) {
-			$clone->set( $key, $value );
+			$copy->set( $key, $value );
 		}
 
-		return $clone;
+		return $copy;
 	}
 
 	function setInstructions( $value ) {
