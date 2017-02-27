@@ -228,6 +228,14 @@ $group->addField( 'related_links', 'Related links', 'page_link' )
 	->set( 'multiple', 1 );
 ```
 
+Taxonomy field
+```php
+$group->addField( 'category', 'Category', 'taxonomy' )
+	->set( 'taxonomy', 'category' )
+	->set( 'return_format', 'object' )
+	->set( 'multiple', 0 );
+```
+
 User field
 ```php
 $group->addField( 'user', 'User', 'user' )
@@ -277,13 +285,13 @@ $group->addField( 'tab', 'My Sub Group Name', 'tab' )
 
 Repeater container
 ```php
-$group->addContainer( 'list', 'List', 'repeater' )
+$repeater = $group->addContainer( 'list', 'List', 'repeater' )
 	->set( 'collapsed', $field->get( 'key' ) )
 	->set( 'min', '1' )
 	->set( 'max', '3' )
 	->set( 'layout', 'block' )
 	->set( 'button_label', 'Add element' )
-	->addField( ... );
+$repeater->addField( ... );
 ```
 
 Flexible-content container
