@@ -307,14 +307,14 @@ Conditional logic
 $field->set( 'conditional_logic', array (
 	array (
 		array (
-			'field' => $other_field->get( 'key ' ),
+			'field' => $other_field->get( 'key' ),
 			'operator' => '==',
 			'value' => 'value1',
 		),
 	),
 	array (
 		array (
-			'field' => $other_field->get( 'key ' ),
+			'field' => $other_field->get( 'key' ),
 			'operator' => '==',
 			'value' => 'value2',
 		),
