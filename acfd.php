@@ -129,19 +129,22 @@ class ACFD {
 				$group_data['menu_order'] = self::$menu_order++;
 			}
 
-			acf_add_local_field_group( $group_data );
-
 			if ( self::$customfile ) {
 				$fields_code .= ' acf_add_local_field_group(' . var_export( $group_data, true ) . ');';
 			}
 
 			// Create ACF Options page if used
-			foreach ( $group_data['location'] as $group ) {
-				foreach ($group as $rule) {
+			foreach ( $group_data['location'] as &$group ) {
+				foreach ($group as &$rule) {
 					if ( $rule['param'] == 'options_page' && $rule['operator'] == '==' ) {
 						if ( strpos( $rule['value'], 'acf-options-' ) === 0 ) {
-							acf_add_options_sub_page( substr( $rule['value'], 12 ) );
-							$fields_code .= ' acf_add_options_sub_page("' . substr( $rule['value'], 12 ) . '");';
+							$pagename = substr( $rule['value'], 12 );
+							$pagename = str_replace( '-', ' ', $pagename );
+							acf_add_options_sub_page( $pagename );
+							$fields_code .= ' acf_add_options_sub_page("' . $pagename . '");';
+
+							// Lower the value in order to adding local field group
+							$rule['value'] = strtolower( $rule['value'] );
 						} else {
 							acf_add_options_page();
 							$fields_code .= ' acf_add_options_page();';
@@ -149,6 +152,8 @@ class ACFD {
 					}
 				}
 			}
+			
+			acf_add_local_field_group( $group_data );
 		}
 
 		if ( self::$customfile ) {
