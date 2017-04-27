@@ -1,3 +1,6 @@
+# 1.0.4
+	Fix field naming issue
+
 # 1.0.3
 	Changed plugin name to ACFD
 	Added CustomModule class that allow you to re-use custom fields

@@ -29,10 +29,13 @@ class CustomFieldContainer extends CustomField {
 	}
 
 	function getFieldsData() {
+		$group_prefix = $this->get('key') . "_";
 		$fields_data = array();
 
 		foreach ( $this->fields as $field ) {
-			$fields_data[] = $field->get();
+			$field_data        = $field->get();
+			$field_data['key'] = $group_prefix . $field_data['key'];
+			$fields_data[]     = $field_data;
 		}
 
 		return $fields_data;
