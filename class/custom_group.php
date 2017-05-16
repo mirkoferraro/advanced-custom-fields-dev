@@ -19,6 +19,10 @@ class CustomGroup extends CustomFieldContainer {
 		$this->set('location', $location);
 	}
 
+	function register() {
+		ACFD::registerGroup( $this->get( 'key' ) );
+	}
+
 	static function parseLocationString( $location_string ) {
 		$groups = explode( 'OR', $location_string );
 

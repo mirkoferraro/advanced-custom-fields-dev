@@ -1,3 +1,7 @@
+# 1.0.5
+	Fix groups creation issue
+	Removed custom file features
+
 # 1.0.4
 	Fix field naming issue
 
