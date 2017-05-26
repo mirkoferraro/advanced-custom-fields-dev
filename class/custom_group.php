@@ -2,9 +2,9 @@
 
 class CustomGroup extends CustomFieldContainer {
 
-	function __construct( $name, $location = 'options_page == acf-options' ) {
-		parent::__construct( $name, null, null, 'fields' );
-		$this->set( 'key', 'group_' . sha1($name) );
+	function __construct( $name, $location ) {
+		parent::__construct( $name, null, null, '', 'fields' );
+		$this->set( 'key', sha1( $name . $location ) );
 		$this->set( 'title', $name );
 		$this->setLocation( $location );
 

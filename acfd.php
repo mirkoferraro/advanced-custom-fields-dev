@@ -3,7 +3,7 @@
 Plugin Name: Advanced Custom Fields Development
 Plugin URI: https://github.com/mirkoferraro/advanced-custom-fields-dev
 Description: Makes the ACF registration via PHP easier
-Version: 1.0.6
+Version: 1.0.7
 Author: Mirko Ferraro
 Author URI: http://www.mirkoferraro.it
 Copyright: Mirko Ferraro

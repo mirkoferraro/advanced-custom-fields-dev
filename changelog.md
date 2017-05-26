@@ -1,3 +1,7 @@
+# 1.0.7
+	Fix container fields issue
+	Improved group key generation
+
 # 1.0.6
 	Fix option page naming
 	Improved field key generation
