@@ -4,13 +4,13 @@ class CustomField {
 	
 	private $data = array();
 
-	function __construct( $name, $label, $type ) {
+	function __construct( $name, $label, $type, $parent_key = '' ) {
 		$defaults = ACFD::getDefaults( $type );
 		foreach ( $defaults as $key => $value ) {
 			$this->set( $key, $value );
 		}
 		
-		$this->set( 'key', $type . '_' . sha1( $name . $label ) )
+		$this->set( 'key', sha1( $parent_key . $name ))
 			->set( 'name', $name )
 			->set( 'label', $label )
 			->set( 'type', $type );

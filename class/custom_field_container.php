@@ -5,8 +5,8 @@ class CustomFieldContainer extends CustomField {
 	private $fields = array();
 	private $field_name;
 
-	function __construct( $name, $label, $type, $field_name = 'fields' ) {
-		parent::__construct( $name, $label, $type );
+	function __construct( $name, $label, $type, $parent_key = '', $field_name = 'fields' ) {
+		parent::__construct( $name, $label, $type, $parent_key );
 		$this->field_name = $field_name;
 	}
 
@@ -29,13 +29,10 @@ class CustomFieldContainer extends CustomField {
 	}
 
 	function getFieldsData() {
-		$group_prefix = $this->get('key') . "_";
 		$fields_data = array();
 
 		foreach ( $this->fields as $field ) {
-			$field_data        = $field->get();
-			$field_data['key'] = $group_prefix . $field_data['key'];
-			$fields_data[]     = $field_data;
+			$fields_data[] = $field->get();
 		}
 
 		return $fields_data;
@@ -47,7 +44,7 @@ class CustomFieldContainer extends CustomField {
 		if ( is_object( $name ) && get_class( $name ) == 'CustomField' ) {
 			$field = $name;
 		} elseif ( $label != null && $type != null ) {
-			$field = new CustomField( $name, $label, $type );
+			$field = new CustomField( $name, $label, $type, $this->get('key') );
 		}
 
 		if ( $field != null ) {
@@ -62,7 +59,7 @@ class CustomFieldContainer extends CustomField {
 			$field_name = ACFD::getContainerFieldName( $type );
 		}
 
-		$field = new CustomFieldContainer( $name, $label, $type, $field_name );
+		$field = new CustomFieldContainer( $name, $label, $type, $this->get( 'key' ), $field_name );
 		$this->fields[] = $field;
 		return $field;
 	}

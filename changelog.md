@@ -1,3 +1,8 @@
+# 1.0.6
+	Fix option page naming
+	Improved field key generation
+	Now compatible with ACF PRO 5.5.14
+
 # 1.0.5
 	Fix groups creation issue
 	Removed custom file features
