@@ -39,7 +39,7 @@ class CustomGroup extends CustomFieldContainer {
 			foreach ( $rules as $r => $rule ) {
 				$rule = trim( $rule );
 				
-				if ( preg_match_all( '/(.+)\s*(==)\s*(.*)/', $rule, $matches ) ) {
+				if ( preg_match_all( '/(.+)\s*(==|!=)\s*(.*)/', $rule, $matches ) ) {
 					$rules[$r] = array(
 						'param' => trim( $matches[1][0] ),
 						'operator' => trim( $matches[2][0] ),
